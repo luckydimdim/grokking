@@ -32,5 +32,5 @@ def fruits_into_baskets(fruits):
 
     return max_value
 
-fruits = ['A', 'B', 'C', 'A', 'C']
+fruits = ['A', 'B', 'C', 'B', 'B', 'C']
 print(fruits_into_baskets(fruits))
