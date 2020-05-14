@@ -1,4 +1,8 @@
 def non_repeat_substring2(str):
+    '''
+    Given a string, find the length of the
+    longest substring which has no repeating characters.
+    '''
     window_start, max_length = 0, 0
     uniques = {}
 
