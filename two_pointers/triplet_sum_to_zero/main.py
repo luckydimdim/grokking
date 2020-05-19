@@ -7,7 +7,6 @@ def search_triplets(arr):
     pointer = 0
 
     arr.sort()
-    print(arr)
 
     while pointer < len(arr) - 2:
         if pointer > 0 and arr[pointer] == arr[pointer - 1]:
