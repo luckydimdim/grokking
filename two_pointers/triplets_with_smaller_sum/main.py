@@ -8,7 +8,6 @@ def triplet_with_smaller_sum2(arr, target):
     count, pointer = 0, 0
 
     arr.sort()
-    print(arr)
 
     while pointer < len(arr) - 2:
         left = pointer + 1
