@@ -1,5 +1,3 @@
-from collections import deque
-
 def find_subarrays(arr, target):
     '''
     Given an array with positive numbers and a target number,
