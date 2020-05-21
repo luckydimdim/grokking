@@ -1,0 +1,36 @@
+Two Pointers
+
+In problems where we deal with sorted arrays (or LinkedLists) and need to find a set of elements that fulfill certain constraints, the Two Pointers approach becomes quite useful.
+
+Problems:
+1. Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.
+
+2. Given an array of sorted numbers and a target sum, find a pair in the array whose sum is equal to the given target.
+Write a function to return the indices of the two numbers (i.e. the pair) such that they add up to the given target.
+
+3. Given an array of sorted numbers, remove all duplicates from it. You should not use any extra space;
+after removing the duplicates in-place return the new length of the array.
+
+4. Given an array of unsorted numbers, find all unique triplets in it that add up to zero.
+
+5. Given an array of unsorted numbers and a target number, find a triplet in the array whose sum is as close to the target number as possible, return the sum of the triplet. If there are more than one such triplet, return the sum of the triplet with the smallest sum.
+
+6. Given an array arr of unsorted numbers and a target sum, count all triplets in it such that arr[i] + arr[j] + arr[k] < target where i, j, and k are three different indices. Write a function to return the count of such triplets.
+
+7. Given an array with positive numbers and a target number, find all of its contiguous subarrays whose product is less than the target number.
+
+8. Given an array containing 0s, 1s and 2s, sort the array in-place. You should treat numbers of the array as objects, hence, we can’t count 0s, 1s, and 2s to recreate the array.
+
+9. Given an array of unsorted numbers and a target number, find all unique quadruplets in it, whose sum is equal to the target number.
+
+10. Given two strings containing backspaces (identified by the character ‘#’), check if the two strings are equal.
+
+11. Given an array, find the length of the smallest subarray in it which when sorted will sort the whole array.
+
+- Can tune up target result by sliding left or right pointer
+- Be careful with while left < right and while left <= right
+- Can be used for inlinne sorting with tracking next position to insert
+- Iitialize resulting list with zeroes if want to fill it from the end
+- Can rewind pointer through same values with while loop
+- for i in range(len(arr), -1, -1):
+- Remove letter: string = string[:i] + string[i+1:]
