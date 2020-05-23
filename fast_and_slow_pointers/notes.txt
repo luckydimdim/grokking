@@ -1,0 +1,43 @@
+Fast And Slow Pointers
+
+Problems:
+1. Given the head of a Singly LinkedList, write a function to determine if the LinkedList has a cycle in it or not.
+
+2. Given the head of a Singly LinkedList that contains a cycle, write a function to find the starting node of the cycle.
+
+3. Any number will be called a happy number if, after repeatedly replacing it with a number equal to the sum of the square of all of its digits, leads us to number ‘1’. All other (not-happy) numbers will never reach ‘1’. Instead, they will be stuck in a cycle of numbers which does not include ‘1’.
+
+4. Given the head of a Singly LinkedList, write a method to return the middle node of the LinkedList.
+    If the total number of nodes in the LinkedList is even, return the second middle node.
+
+5. Given the head of a Singly LinkedList, write a method to check if the LinkedList is a palindrome or not.
+    Your algorithm should use constant space and the input LinkedList should be in the original form once the algorithm is finished. The algorithm should have O(N)O(N)O(N) time complexity where ‘N’ is the number of nodes in the LinkedList.
+
+6. Given the head of a Singly LinkedList, write a method to modify the LinkedList such that the nodes from the second half of the LinkedList are inserted alternately to the nodes from the first half in reverse order. So if the LinkedList has nodes 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> null, your method should return 1 -> 6 -> 2 -> 5 -> 3 -> 4 -> null.
+    Your algorithm should not use any extra space and the input LinkedList should be modified in-place.
+
+- is quite useful when dealing with cyclic LinkedLists or arrays
+- while True: until fast meet slow pointer to calculate cycle length
+- fast = find_square_sum(find_square_sum(fast))
+- next_index = (current_index + step_size) % len(array)
+
+def reverse(head):
+  prev = None
+  while (head is not None):
+    next = head.next
+    head.next = prev
+    prev = head
+    head = next
+  return prev
+
+  while first_head is not None and second_head is not None:
+    first_next = first_head.next
+    first_head.next = second_head
+    first_head = first_next
+
+    second_next = second_head.next
+    second_head.next = first_head
+    second_head = second_next
+
+  if first_head is not None:
+    first_head.next = None
