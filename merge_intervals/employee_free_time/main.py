@@ -1,5 +1,4 @@
 from __future__ import print_function
-from heapq import *
 
 class Interval:
     def __init__(self, start, end):
@@ -9,17 +8,8 @@ class Interval:
     def print_interval(self):
         print("[" + str(self.start) + ", " + str(self.end) + "]", end='')
 
-class EmployeeInterval:
-    def __init__(self, interval, employee_index, interval_index):
-        self.interval = interval
-        self.employee_index = employee_index
-        self.interval_index = interval_index
 
-    def __lt__(self, other):
-        return self.interval.start < other.interval.start
-
-
-def find_employee_free_time(schedule):
+def find_employee_free_time2(schedule):
     '''
     For ‘K’ employees, we are given a list of intervals representing the working hours of each employee.
     Our goal is to find out if there is a free interval that is common to all employees.
@@ -35,6 +25,26 @@ def find_employee_free_time(schedule):
     for i in range(1, len(intervals)):
         if intervals[i].start > intervals[i - 1].end:
             result.append(Interval(intervals[i - 1].end, intervals[i].start))
+
+    return result
+
+def find_employee_free_time(schedule):
+    '''
+    For ‘K’ employees, we are given a list of intervals representing the working hours of each employee.
+    Our goal is to find out if there is a free interval that is common to all employees.
+    You can assume that each list of employee working hours is sorted on the start time.
+    '''
+    result = []
+    employees = []
+
+    for intervals in schedule:
+        employees += intervals
+
+    employees.sort(key = lambda x: x.start)
+
+    for i in range(1, len(employees)):
+        if employees[i].start > employees[i - 1].end:
+            result.append(Interval(employees[i - 1].end, employees[i].start))
 
     return result
 

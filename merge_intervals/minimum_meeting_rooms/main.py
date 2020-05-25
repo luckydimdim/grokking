@@ -27,7 +27,7 @@ def min_meeting_rooms2(meetings):
 
   return rooms_needed
 
-def min_meeting_rooms(meetings):
+def min_meeting_rooms3(meetings):
   '''
   Given a list of intervals representing the start and end time of ‘N’ meetings,
   find the minimum number of rooms required to hold all the meetings.
@@ -41,6 +41,25 @@ def min_meeting_rooms(meetings):
       heappop(min_heap)
 
     heappush(min_heap, meeting)
+
+    min_rooms = max(min_rooms, len(min_heap))
+
+  return min_rooms
+
+def min_meeting_rooms(meetings):
+  '''
+  Given a list of intervals representing the start and end time of ‘N’ meetings,
+  find the minimum number of rooms required to hold all the meetings.
+  '''
+  min_rooms = 0
+  meetings.sort(key = lambda x: x.start)
+  min_heap = []
+
+  for i in range(len(meetings)):
+    while len(min_heap) > 0 and min_heap[0].end <= meetings[i].start:
+      heappop(min_heap)
+
+    heappush(min_heap, meetings[i])
 
     min_rooms = max(min_rooms, len(min_heap))
 

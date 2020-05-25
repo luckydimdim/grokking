@@ -10,7 +10,7 @@ class Interval:
     print("[" + str(self.start) + ", " + str(self.end) + "]", end='')
 
 
-def merge(intervals):
+def merge2(intervals):
   '''
   Given a list of intervals, merge all the overlapping intervals
   to produce a list that has only mutually exclusive intervals.
@@ -36,6 +36,29 @@ def merge(intervals):
   merged.append(Interval(start, end))
 
   return merged
+
+def merge(intervals):
+  '''
+  Given a list of intervals, merge all the overlapping intervals
+  to produce a list that has only mutually exclusive intervals.
+  '''
+  intervals.sort(key = lambda x: x.start)
+  start, end = intervals[0].start, intervals[0].end
+  result = []
+
+  for i in range(1, len(intervals)):
+    interval = intervals[i]
+
+    if interval.start <= end:
+      end = max(end, interval.end)
+    else:
+      result.append(Interval(start, end))
+      start = interval.start
+      end = interval.end
+
+  result.append(Interval(start, end))
+
+  return result
 
 def main():
   print("Merged intervals: ", end='')
