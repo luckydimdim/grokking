@@ -12,15 +12,12 @@ def cyclic_sort(nums):
     while i < len(nums):
         j = nums[i] - 1
 
-        #if nums[i] == i + 1:
         if nums[i] == i + 1:
             i += 1
         else:
             nums[i], nums[j] = nums[j], nums[i]
 
     return nums
-
-# [1, 2, 3, 4, 5]
 
 nums = [3, 1, 5, 4, 2]
 
