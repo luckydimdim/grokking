@@ -36,6 +36,47 @@ def find_successor(root, key):
   return queue[0]
 
 
+def test1(root):
+  if root is None:
+    return None
+
+  queue = deque()
+  queue.append(root)
+
+  while queue:
+    level_size = len(queue)
+
+    for _ in range(level_size):
+      curr = queue.popleft()
+      print(curr.val)
+
+      if curr.left:
+        queue.append(curr.left)
+
+      if curr.right:
+        queue.append(curr.right)
+
+  return None
+
+def test2(root):
+  if root is None:
+    return None
+
+  queue = deque()
+  queue.append(root)
+
+  while queue:
+    curr = queue.popleft()
+    print(curr.val)
+
+    if curr.left:
+      queue.append(curr.left)
+
+    if curr.right:
+      queue.append(curr.right)
+
+  return None
+
 def main():
   root = TreeNode(12)
   root.left = TreeNode(7)
@@ -50,5 +91,8 @@ def main():
   if result:
     print(result.val)
 
+  print('===')
+  test2(root)
+  print('===')
 
 main()
