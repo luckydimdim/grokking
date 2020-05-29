@@ -16,6 +16,18 @@ Merge Intervals
 
 Technics:
 
+if intervals[i][start] < intervals[i-1][end]:
+  # please note the comparison above, it is "<" and not "<="
+  # while merging we needed "<=" comparison, as we will be merging the two
+  # intervals having condition "intervals[i][start] == intervals[i - 1][end]" but
+  # such intervals don't represent conflicting appointments as one starts right
+  # after the other
+
+if len(intervals) < 2:
+  return intervals
+
+intervals.sort(key=lambda x: x.start)
+
 intervals.sort(key=lambda x: x.start)
 
   start = intervals[0].start
@@ -36,11 +48,11 @@ intervals.sort(key=lambda x: x.start)
 
 from heapq import *
 
-  def __lt__(self, other):
-    return self.end < other.end
+def __lt__(self, other):
+  return self.end < other.end
 
-  for meeting in meetings:
-    while len(min_heap) > 0 and meeting.start >= min_heap[0].end:
-      heappop(min_heap)
+for meeting in meetings:
+  while len(min_heap) > 0 and meeting.start >= min_heap[0].end:
+    heappop(min_heap)
 
-    heappush(min_heap, meeting)
+  heappush(min_heap, meeting)

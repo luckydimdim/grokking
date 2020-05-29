@@ -56,7 +56,7 @@ def reverse_every_k_elements2(head, k):
 
   return head
 
-def reverse_every_k_elements(head, k):
+def reverse_every_k_elements3(head, k):
   '''
   Given the head of a LinkedList and a number ‘k’,
   reverse every ‘k’ sized sub-list starting from the head.
@@ -94,6 +94,47 @@ def reverse_every_k_elements(head, k):
       break
 
     prev = tail
+
+  return head
+
+def reverse_every_k_elements(head, k):
+  '''
+  Given the head of a LinkedList and a number ‘k’,
+  reverse every ‘k’ sized sub-list starting from the head.
+  If, in the end, you are left with a sub-list with
+  less than ‘k’ elements, reverse it too.
+  '''
+  if head is None or k <= 0:
+    return head
+
+  prev, curr = None, head
+  is_new_head = False
+
+  while True:
+    tail_of_first_part = prev
+    tail_of_second_part = curr
+
+    counter = 0
+    while counter < k and curr is not None:
+      next = curr.next
+      curr.next = prev
+      prev = curr
+      curr = next
+      counter += 1
+
+    if is_new_head == False:
+      is_new_head = True
+      head = prev
+
+    if tail_of_first_part is not None:
+      tail_of_first_part.next = prev
+
+    tail_of_second_part.next = curr
+
+    if curr is None:
+      break
+
+    prev = tail_of_second_part
 
   return head
 

@@ -48,7 +48,7 @@ def reverse_sub_list2(head, p, q):
 
   return head
 
-def reverse_sub_list(head, p, q):
+def reverse_sub_list3(head, p, q):
   '''
   Given the head of a LinkedList and two positions ‘p’ and ‘q’,
   reverse the LinkedList from position ‘p’ to ‘q’.
@@ -79,6 +79,40 @@ def reverse_sub_list(head, p, q):
     head = prev
 
   tail_of_mid_part.next = curr
+
+  return head
+
+def reverse_sub_list(head, p, q):
+  '''
+  Given the head of a LinkedList and two positions ‘p’ and ‘q’,
+  reverse the LinkedList from position ‘p’ to ‘q’.
+  '''
+  if p == q or head is None:
+    return head
+
+  counter, prev, curr = 0, None, head
+  while counter < p - 1 and curr is not None:
+    prev = curr
+    curr = curr.next
+    counter += 1
+
+  tail_of_first_half = prev
+  tail_of_second_half = curr
+
+  prev = None
+  while curr is not None and counter < q:
+    next = curr.next
+    curr.next = prev
+    prev = curr
+    curr = next
+    counter += 1
+
+  if tail_of_first_half is not None:
+    tail_of_first_half.next = prev
+  else:
+    head = prev
+
+  tail_of_second_half.next = curr
 
   return head
 

@@ -1,0 +1,38 @@
+This pattern describes an interesting approach to deal with problems involving arrays containing numbers in a given range.
+
+Problems:
+
+1. You are given an unsorted array containing numbers taken from the range 1 to ‘n’. The array can have duplicates, which means that some numbers will be missing. Find all the missing numbers.
+
+2. We are given an array containing ‘n’ objects. Each object, when created, was assigned a unique number from 1 to ‘n’ based on their creation sequence. This means that the object with sequence number ‘3’ was created just before the object with sequence number ‘4’.
+    Write a function to sort the objects in-place on their creation sequence number in O(n)O(n)O(n) and without any extra space. For simplicity, let’s assume we are passed an integer array containing only the sequence numbers, though each number is actually an object.
+
+3. We are given an array containing ‘n’ distinct numbers taken from the range 0 to ‘n’. Since the array has only ‘n’ numbers out of the total ‘n+1’ numbers, find the missing number.
+
+4. We are given an unsorted array containing numbers taken from the range 1 to ‘n’. The array can have duplicates, which means some numbers will be missing. Find all those missing numbers.
+
+5. We are given an unsorted array containing ‘n+1’ numbers taken from the range 1 to ‘n’. The array has only one duplicate but it can be repeated multiple times. Find that duplicate number without using any extra space. You are, however, allowed to modify the input array.
+
+6. We are given an unsorted array containing ‘n’ numbers taken from the range 1 to ‘n’. The array has some duplicates, find all the duplicate numbers without using any extra space.
+
+7. We are given an unsorted array containing ‘n’ numbers taken from the range 1 to ‘n’. The array originally contained all the numbers from 1 to ‘n’, but due to a data error, one of the numbers got duplicated which also resulted in one number going missing. Find both these numbers.
+
+8. Given an unsorted array containing numbers, find the smallest missing positive number in it.
+
+9. Given an unsorted array containing numbers and a number ‘k’, find the first ‘k’ missing positive numbers in the array.
+
+Main ideas:
+
+def cyclic_sort(nums):
+  i = 0
+  while i < len(nums):
+    j = nums[i] - 1
+    if nums[i] != nums[j]:
+      nums[i], nums[j] = nums[j], nums[i]  # swap
+    else:
+      i += 1
+  return nums
+
+for i in range(n):
+if nums[i] != i:
+  return i
