@@ -1,0 +1,22 @@
+Problems:
+
+1. Given a binary tree and a number ‘S’, find if the tree has a path from root-to-leaf such that the sum of all the node values of that path equals ‘S’.
+
+2. Given a binary tree and a number ‘S’, find all paths from root-to-leaf such that the sum of all the node values of each path equals ‘S’.
+
+3. Given a binary tree where each node can only have a digit (0-9) value, each root-to-leaf path will represent a number. Find the total sum of all the numbers represented by all paths.
+
+4. Given a binary tree and a number sequence, find if the sequence is present as a root-to-leaf path in the given tree.
+
+5. Given a binary tree and a number ‘S’, find all paths in the tree such that the sum of all the node values of each path equals ‘S’. Please note that the paths can start or end at any node but all paths must follow direction from parent to child (top to bottom).
+
+The idea:
+
+def has_path(root, sum):
+  if root is None:
+    return False
+
+  if root.left is None and root.right is None:
+    return root.val == sum
+
+  return has_path(root.left, sum - root.val) or has_path(root.right, sum - root.val)

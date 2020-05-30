@@ -5,7 +5,7 @@ class TreeNode:
     self.right = right
 
 
-def find_sum_of_path_numbers(root, path_sum = 0):
+def find_sum_of_path_numbers2(root, path_sum = 0):
   '''
   Given a binary tree where each node can only have a digit (0-9) value,
   each root-to-leaf path will represent a number.
@@ -20,6 +20,27 @@ def find_sum_of_path_numbers(root, path_sum = 0):
     return path_sum
 
   return find_sum_of_path_numbers(root.left, path_sum) + find_sum_of_path_numbers(root.right, path_sum)
+
+
+def find_sum_of_path_numbers(root, path_sum = 0):
+  '''
+  Given a binary tree where each node can only have a digit (0-9) value,
+  each root-to-leaf path will represent a number.
+  Find the total sum of all the numbers represented by all paths.
+  '''
+  if root is None:
+    return 0
+
+  path_sum = path_sum * 10 + root.val
+
+  if root.left is None and root.right is None:
+    return path_sum
+
+  result = find_sum_of_path_numbers(root.left, path_sum)
+  result += find_sum_of_path_numbers(root.right, path_sum)
+
+  return result
+
 
 def main():
   root = TreeNode(1)

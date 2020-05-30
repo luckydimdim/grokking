@@ -33,7 +33,7 @@ class TreeDiameter:
     return max(left_height, right_height) + 1
 
 
-  def find_diameter(self, root):
+  def find_diameter2(self, root):
     '''
     Given a binary tree, find the length of its diameter.
     The diameter of a tree is the number of nodes on the longest path
@@ -52,6 +52,28 @@ class TreeDiameter:
 
     sum = left + right + 1
     self.tree_diameter = max(self.tree_diameter, sum)
+
+    return max(left, right) + 1
+
+  def find_diameter(self, root):
+    '''
+    Given a binary tree, find the length of its diameter.
+    The diameter of a tree is the number of nodes on the longest path
+    between any two leaf nodes. The diameter of a tree may or may not pass through the root.
+    Note: You can always assume that there are at least two leaf nodes in the given tree.
+    '''
+    self.do_measurement(root)
+    return self.tree_diameter
+
+  def do_measurement(self, root):
+    if root is None:
+      return 0
+
+    left = self.do_measurement(root.left)
+    right = self.do_measurement(root.right)
+
+    diameter = left + right + 1
+    self.tree_diameter = max(self.tree_diameter, diameter)
 
     return max(left, right) + 1
 

@@ -5,7 +5,7 @@ class TreeNode:
     self.right = right
 
 
-def find_paths(root, sum):
+def find_paths2(root, sum):
   '''
   Given a binary tree and a number ‘S’,
   find all paths from root-to-leaf
@@ -31,6 +31,30 @@ def find_paths_recursive(root, sum, current, result):
 
   del current[-1]
 
+def find_paths(root, sum):
+  '''
+  Given a binary tree and a number ‘S’,
+  find all paths from root-to-leaf
+  such that the sum of all the node values of each path equals ‘S’.
+  '''
+  result = []
+  do_find_paths(root, sum, 0, [], result)
+  return result
+
+def do_find_paths(root, S, sum, current, result):
+  if root is None:
+    return
+
+  current.append(root.val)
+
+  if root.left is None and root.right is None:
+    if root.val + sum == S:
+      result.append(list(current))
+
+  do_find_paths(root.left, S, sum + root.val, current, result)
+  do_find_paths(root.right, S, sum + root.val, current, result)
+
+  del current[-1]
 
 def main():
 

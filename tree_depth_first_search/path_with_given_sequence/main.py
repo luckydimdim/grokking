@@ -5,7 +5,7 @@ class TreeNode:
     self.right = right
 
 
-def find_path(root, sequence):
+def find_path2(root, sequence):
   '''
   Given a binary tree and a number sequence, find if the sequence
   is present as a root-to-leaf path in the given tree.
@@ -18,6 +18,21 @@ def find_path(root, sequence):
 
   return find_path(root.left, sequence[1:]) or find_path(root.right, sequence[1:])
 
+def find_path(root, sequence):
+  '''
+  Given a binary tree and a number sequence, find if the sequence
+  is present as a root-to-leaf path in the given tree.
+  '''
+  if root is None:
+    return False
+
+  if root.left is None and root.right is None:
+    return len(sequence) == 1 and sequence[0] == root.val
+
+  if root.val != sequence[0]:
+    return False
+
+  return find_path(root.left, sequence[1:]) or find_path(root.right, sequence[1:])
 
 def main():
 
