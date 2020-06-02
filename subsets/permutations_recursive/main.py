@@ -20,7 +20,6 @@ def permutate(nums, i, current, result):
     permutate(nums, i + 1, next, result)
 
 
-
 def main():
   print("Here are all the permutations: " + str(find_permutations([1, 3, 5])))
 
