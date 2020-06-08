@@ -24,7 +24,7 @@ class ParenthesesString:
         self.closed = closed
 
 
-def generate_valid_parentheses(nums):
+def generate_valid_parentheses3(nums):
     '''
     For a given number ‘N’, write a function to generate all combination of ‘N’ pairs of balanced parentheses.
     N = 3, ((())), (()()), (())(), ()(()), ()()()
@@ -46,6 +46,52 @@ def generate_valid_parentheses(nums):
                 queue.append(ParenthesesString(curr.value + ')', curr.opened, curr.closed + 1))
 
     return result
+
+class Bracket:
+    def __init__(self, value, opened, closed):
+        self.value = value
+        self.opened = opened
+        self.closed = closed
+
+def generate_valid_parentheses(nums):
+    '''
+    For a given number ‘N’, write a function to
+    generate all combination of ‘N’ pairs of balanced parentheses.
+    N = 3, ((())), (()()), (())(), ()(()), ()()()
+    '''
+    result = []
+    queue = deque()
+    queue.append(Bracket('', 0, 0))
+    while queue:
+        curr = queue.popleft()
+        if curr.opened == nums and curr.closed == nums:
+            result.append(curr.value)
+        else:
+            if curr.opened < nums:
+                queue.append(Bracket(curr.value + '(', curr.opened + 1, curr.closed))
+
+            if curr.closed < curr.opened:
+                queue.append(Bracket(curr.value + ')', curr.opened, curr.closed + 1))
+    return result
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def main():
     print("All combinations of balanced parentheses are: " +

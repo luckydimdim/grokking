@@ -1,4 +1,4 @@
-def find_subsets(nums):
+def find_subsets2(nums):
     '''
     Given a set with distinct elements, find all of its distinct subsets.
     '''
@@ -10,6 +10,18 @@ def find_subsets(nums):
 
     return subsets
 
+def find_subsets(nums):
+    '''
+    Given a set with distinct elements,
+    find all of its distinct subsets.
+    '''
+    result = [[]]
+    for num in range(len(nums)):
+        queue_size = len(result)
+        for i in range(queue_size):
+            curr = result[i]
+            result.append(curr + [nums[num]])
+    return result
 
 def main():
 
