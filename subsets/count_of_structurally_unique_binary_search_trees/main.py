@@ -5,7 +5,7 @@ class TreeNode:
     self.right = None
 
 
-def count_trees(n):
+def count_trees2(n):
   '''
   Given a number ‘n’, write a function to
   return the count of structurally unique Binary Search Trees (BST)
@@ -23,6 +23,24 @@ def count_trees(n):
 
   return count
 
+
+def count_trees(n):
+  '''
+  Given a number ‘n’, write a function to
+  return the count of structurally unique Binary Search Trees (BST)
+  that can store values 1 to ‘n’.
+  '''
+  if n <= 1:
+    return 1
+
+  count = 0
+
+  for i in range(1, n + 1):
+    left_branch = count_trees(i - 1)
+    right_branch = count_trees(n - i)
+    count += (left_branch * right_branch)
+
+  return count
 
 def main():
   print("Total trees: " + str(count_trees(2)))

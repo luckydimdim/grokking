@@ -4,7 +4,7 @@ class TreeNode:
         self.left = None
         self.right = None
 
-def find_unique_trees(n):
+def find_unique_trees2(n):
     '''
     Given a number ‘n’, write a function to
     return all structurally unique Binary Search Trees (BST)
@@ -38,6 +38,47 @@ def find_unique_trees_recursive(start, end):
                 result.append(root)
 
     return result
+
+
+def find_unique_trees(n):
+    '''
+    Given a number ‘n’, write a function to
+    return all structurally unique Binary Search Trees (BST)
+    that can store values 1 to ‘n’?
+    '''
+    if n <= 0:
+        return []
+
+    return loop_unique_trees(1, n)
+
+def loop_unique_trees(start, end):
+    result = []
+    if start > end:
+        return [None]
+
+    for i in range(start, end + 1):
+        left_branch = loop_unique_trees(start, i - 1)
+        right_branch = loop_unique_trees(i + 1, end)
+
+        for left in left_branch:
+            for right in right_branch:
+                root = TreeNode(i)
+                root.left = left
+                root.right = right
+                result.append(root)
+    return result
+
+
+
+
+
+
+
+
+
+
+
+
 
 def main():
     #print("Total trees: " + str(len(find_unique_trees(1))))
