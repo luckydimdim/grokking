@@ -22,6 +22,7 @@ def search_min_diff_element(arr, key):
         else:
             end = mid - 1
 
+    # Cool idea
     if (arr[start] - key) < (key - arr[end]):
         return arr[start]
 
