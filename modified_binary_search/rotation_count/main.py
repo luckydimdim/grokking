@@ -14,7 +14,7 @@ def count_rotations2(arr):
         else:
             end = mid - 1
 
-    return start
+    return start + 1
 
 def count_rotations(arr):
     start, end = 0, len(arr) - 1
