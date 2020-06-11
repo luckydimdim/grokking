@@ -62,7 +62,7 @@ def rearrange_string(str):
         last_letter = letter
         last_rate = rate + 1
 
-    return result
+    return result if len(result) == len(str) else ''
 
 def main():
   print("Rearranged string:  " + rearrange_string("aappp"))
