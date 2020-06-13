@@ -62,7 +62,7 @@ def print_selected_elements(dp, weights, profits, capacity):
 
   print(result)
 
-def solve_knapsack(profits, weights, capacity):
+def solve_knapsack4(profits, weights, capacity):
   n = len(profits)
 
   if capacity <= 0 or n == 0 or len(weights) != n:
@@ -84,6 +84,45 @@ def solve_knapsack(profits, weights, capacity):
       dp[c] = max(profit1, profit2)
 
   return dp[capacity]
+
+def solve_knapsack5(profits, weights, capacity):
+  dp = [[-1 for x in range(capacity+1)] for y in range(len(weights))]
+  return solve_knapsack_rec(dp, profits, weights, capacity, 0)
+
+def solve_knapsack_rec(dp, profits, weights, capacity, index):
+  if index >= len(weights) or capacity <= 0:
+    return 0
+
+  if dp[index][capacity] != -1:
+    return dp[index][capacity]
+
+  left = 0
+  if weights[index] <= capacity:
+    left = profits[index] + solve_knapsack_rec(dp, profits, weights, capacity-weights[index], index+1)
+
+  right = solve_knapsack_rec(dp, profits, weights, capacity, index+1)
+
+  if dp[index][capacity] == -1:
+    dp[index][capacity] = max(left, right)
+
+  return dp[index][capacity]
+
+def solve_knapsack(profits, weights, capacity):
+  dp = [[0 for x in range(capacity+1)] for y in range(2)]
+
+  for c in range(capacity+1):
+    if weights[0] <= c:
+      dp[0][c] = profits[0]
+
+  for i in range(1, len(profits)):
+    for c in range(0, capacity+1):
+      first = 0
+      if weights[i] <= c:
+        first = profits[i] + dp[(i - 1) % 2][c - weights[i]]
+      second = dp[(i - 1) % 2][c]
+      dp[i % 2][c] = max(first, second)
+
+  return dp[(len(profits) - 1) % 2][capacity]
 
 def main():
   print(solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 5))
