@@ -26,9 +26,6 @@ def find_order(words):
                 in_degree[child] += 1
                 break
 
-    print(graph)
-    print(in_degree)
-
     sources = deque()
     for key in in_degree:
         if in_degree[key] == 0:
