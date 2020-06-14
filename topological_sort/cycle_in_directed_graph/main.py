@@ -1,6 +1,9 @@
 from collections import deque
 
 def topological_sort(vertices, edges):
+    '''
+    Find if a given Directed Graph has a cycle in it or not
+    '''
     result = []
 
     in_degree = {i: 0 for i in range(vertices)}
